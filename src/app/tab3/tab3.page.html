@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Carrinho de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="(cart$ | async) as cartItems">
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <ion-list>
+        <ion-item *ngFor="let item of cartItems">
+          <ion-label>{{ item.descricao }}</ion-label>
+          <ion-label slot="end" color="primary">{{ item.valorDesconto | currency:'BRL' }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="ion-padding-top ion-margin-top" style="border-top: 1px solid #ddd;">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Subtotal</ion-col>
+            <ion-col class="ion-text-end">{{ subtotal | currency:'BRL' }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Frete</ion-col>
+            <ion-col class="ion-text-end">{{ frete | currency:'BRL' }}</ion-col>
+          </ion-row>
+          <ion-row style="font-weight: bold; font-size: 1.2em;">
+            <ion-col>Total</ion-col>
+            <ion-col class="ion-text-end">{{ total | currency:'BRL' }}</ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button expand="block" class="ion-margin-top" (click)="handleCheckout()">
+          Finalizar Compra
+        </ion-button>
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <ion-card class="ion-text-center">
+        <ion-card-header>
+          <ion-card-title>Carrinho Vazio</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Adicione produtos na aba "Início" para vê-los aqui.</p>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </ng-container>
+</ion-content>

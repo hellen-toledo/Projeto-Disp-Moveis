@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Produto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="product">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title style="font-size: 1.8em;">{{ product.descricao }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="ion-margin-vertical">
+        <p style="text-decoration: line-through; font-size: 1.2em;">
+          {{ product.valorNormal | currency:'BRL' }}
+        </p>
+        <p style="font-size: 2em; color: var(--ion-color-primary); font-weight: bold;">
+          {{ product.valorDesconto | currency:'BRL' }}
+        </p>
+      </div>
+      <h2 style="font-weight: bold; margin-top: 20px;">Detalhes</h2>
+      <p>{{ product.detalhes }}</p>
+      <ion-button expand="block" (click)="addToCart()" class="ion-margin-top">
+        Comprar Produto
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

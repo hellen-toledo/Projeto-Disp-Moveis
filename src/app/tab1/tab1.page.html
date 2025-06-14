@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ofertas do Dia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list>
+    <ion-card *ngFor="let product of products" [routerLink]="['/product', product.id]" button>
+      <ion-card-header>
+        <ion-card-title>{{ product.descricao }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p style="text-decoration: line-through;">
+          {{ product.valorNormal | currency:'BRL' }}
+        </p>
+        <p class="ion-text-end" style="font-size: 1.5em; color: var(--ion-color-primary); font-weight: bold;">
+          {{ product.valorDesconto | currency:'BRL' }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

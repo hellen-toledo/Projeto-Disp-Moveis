@@ -1,0 +1,57 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Tab 2 page"></app-explore-container>
+</ion-content> -->
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Minha Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="customer$ | async as customer; else noCustomer">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dados Cadastrados</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item><ion-label><strong>Nome:</strong> {{customer.nome}}</ion-label></ion-item>
+          <ion-item><ion-label><strong>Endereço:</strong> {{customer.endereco}}</ion-label></ion-item>
+          <ion-item><ion-label><strong>Cidade:</strong> {{customer.cidade}} - {{customer.estado}}</ion-label></ion-item>
+        </ion-list>
+        <ion-button expand="block" routerLink="/register" color="secondary" class="ion-margin-top">
+          Editar Dados
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #noCustomer>
+    <ion-card class="ion-text-center">
+      <ion-card-header>
+        <ion-card-title>Nenhum Cliente Cadastrado</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="ion-padding-bottom">Por favor, cadastre os seus dados.</p>
+        <ion-button expand="block" routerLink="/register">
+          Cadastrar Cliente
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>

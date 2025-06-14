@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <!-- O título muda dependendo se estamos a editar ou a criar -->
+    <ion-title>{{ isEditing ? 'Editar Dados' : 'Cadastrar Cliente' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- O evento (ngSubmit) chama a função onSubmit quando o formulário é enviado -->
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome Completo</ion-label>
+        <ion-input name="nome" type="text" [(ngModel)]="customerData.nome" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Endereço (Rua, Nº)</ion-label>
+        <ion-input name="endereco" type="text" [(ngModel)]="customerData.endereco" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input name="cep" type="text" [(ngModel)]="customerData.cep" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input name="cidade" type="text" [(ngModel)]="customerData.cidade" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Bairro</ion-label>
+        <ion-input name="bairro" type="text" [(ngModel)]="customerData.bairro" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Estado (Ex: SP)</ion-label>
+        <ion-input name="estado" type="text" [(ngModel)]="customerData.estado" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefone</ion-label>
+        <ion-input name="telefone" type="tel" [(ngModel)]="customerData.telefone" required></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button class="ion-margin-top" type="submit" expand="block" [disabled]="form.invalid">
+      Salvar Dados
+    </ion-button>
+  </form>
+</ion-content>
